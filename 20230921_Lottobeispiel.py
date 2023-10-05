@@ -1,38 +1,39 @@
 import random
 import matplotlib.pyplot as plt
 
+zahlen = 45
+ziehungen = 6
+
 def lottoziehung(aufrufe, lottozahlen):
-    i = 44 - aufrufe
+    i = zahlen - 1 - aufrufe
     #print(i)
     index = random.randint(0, i)
         
-    gezogenezahl = lottozahlen[index]
-    lottozahlen[index] = lottozahlen[i]
-    lottozahlen[i] = gezogenezahl
+    lottozahlen[index], lottozahlen[i] = lottozahlen[i], lottozahlen[index]
     
-    return gezogenezahl
+    return lottozahlen[i]
 
 lottozahlen = []
-for i in range(45):
+for i in range(zahlen):
     lottozahlen.append(i)
 
 dict = {"Zahl":"Anzahl"}
-for i in range(46):
-    dict[i] = 0
+for i in range(zahlen):
+    dict[i+1] = 0
 
 x = input("Ziehungen?")
 x = int(x)
 for i in range(x):
-    for i in range(6):
+    for i in range(ziehungen):
         gezogenezahl = lottoziehung(i, lottozahlen)
-        dict[gezogenezahl] = dict[gezogenezahl] + 1
+        dict[gezogenezahl+1] = dict[gezogenezahl+1] + 1
 
 print(dict)
 
 positionen = []
 hoehe = []
-for i in range(45):
-    hoehe.append(dict[i])
+for i in range(zahlen):
+    hoehe.append(dict[i+1])
     positionen.append(i+1)
     
 plt.bar(positionen, hoehe, align = "center")
