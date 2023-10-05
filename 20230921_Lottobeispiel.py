@@ -6,9 +6,8 @@ ziehungen = 6
 
 def lottoziehung(aufrufe, lottozahlen):
     i = zahlen - 1 - aufrufe
-    #print(i)
-    index = random.randint(0, i)
-        
+    
+    index = random.randint(0, i)    
     lottozahlen[index], lottozahlen[i] = lottozahlen[i], lottozahlen[index]
     
     return lottozahlen[i]
